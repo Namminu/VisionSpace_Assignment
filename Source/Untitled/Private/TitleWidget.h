@@ -34,4 +34,7 @@ protected:
 	/* 버튼 클릭 이벤트 */
 	UFUNCTION()
 	void OnOpenButtonClicked();
+
+	UFUNCTION()
+	void HandleDisplayWidgetClosed();
 };

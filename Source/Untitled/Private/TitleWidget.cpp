@@ -2,6 +2,7 @@
 
 
 #include "TitleWidget.h"
+#include "MainWidget.h"
 
 void UTitleWidget::NativeConstruct()
 {
@@ -15,7 +16,6 @@ void UTitleWidget::NativeConstruct()
 
 void UTitleWidget::OnOpenButtonClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Open Butoon Clicked"));
 	if (!displayWidget)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Display Widget Not Set for %s"), *GetName());
@@ -24,10 +24,18 @@ void UTitleWidget::OnOpenButtonClicked()
 
 	if(!displayWidgetInstance)
 	{
-		displayWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), displayWidget);
-		if (displayWidgetInstance)
+		UMainWidget* MainWidgetInstance = CreateWidget<UMainWidget>(GetWorld(), displayWidget);
+		if (MainWidgetInstance)
 		{
+			MainWidgetInstance->OnClosed.AddDynamic(this, &UTitleWidget::HandleDisplayWidgetClosed);
+
+			displayWidgetInstance = MainWidgetInstance;
 			displayWidgetInstance->AddToViewport();
 		}
 	}
+}
+
+void UTitleWidget::HandleDisplayWidgetClosed()
+{
+	displayWidgetInstance = nullptr;
 }
