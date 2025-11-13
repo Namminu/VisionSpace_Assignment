@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/Border.h"
 #include "MainWidget.generated.h"
 
 /**
@@ -25,6 +26,15 @@ public:
 	FOnMainWidgetClosed OnClosed;
 
 protected:
+#pragma region --- SubWidgets ---
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
+	TSubclassOf<UUserWidget> AIChatWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UBorder* AIChatBorder;
+#pragma endregion
+
+
 	/* À§Á¬Ã¢ ´Ý±â ¹öÆ° */
 	UPROPERTY(meta = (BindWidget))
 	UButton* closeButton;

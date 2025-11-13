@@ -39,7 +39,6 @@ void UAIChatWidget::OnGenerateBtnClicked()
 		if (!loadingWidget)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Loading Widget Null ERROR"));
-			return;
 		}
 		loadingWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), loadingWidget);
 		if (loadingWidgetInstance)
@@ -60,7 +59,7 @@ void UAIChatWidget::OnGenerateBtnClicked()
 			TimerHandle_GenerateTask,
 			this,
 			&UAIChatWidget::OnGenerateTaskCompleted,
-			3.0f, // 대기 시간 임의 3초 설정
+			2.0f, // 대기 시간 임의 3초 설정
 			false
 		);
 	}
@@ -80,12 +79,24 @@ void UAIChatWidget::OnGenerateTaskCompleted()
 	}
 
 	// 2. OutputText 내용 설정
-	FText dummyResult = FText::FromString(TEXT("dummy Result ~"));
+	FText dummyResult = FText::FromString(TEXT(
+	"KPI +15% | ROI +10% | EFF 85% | MOP ↓ 1.2s\n"
+    "▲ Performance Alert: Current operation shows 35% efficiency gap\n"
+    "High labor dependency (20 workers)\n"
+    "Consider automation for 62% cost reduction potential\n"
+	"Manual processes limiting scalability"));
 	OutputText->SetText(dummyResult);
 
 	// 3. LastUpdateTxt 갱신
 	FDateTime curTime = FDateTime::Now();
-	FString timeFormatString = TEXT("Last updated : %%p %%I:%%M:%%S");
-	FString formattedTime = curTime.ToString(*timeFormatString);
+	int32 hour = curTime.GetHour() % 12;
+	if (hour == 0) hour = 12;
+	FString ampm = curTime.GetHour() >= 12 ? TEXT("PM") : TEXT("AM");
+	FString formattedTime = FString::Printf(
+		TEXT("Last updated : %s %02d:%02d:%02d"),
+		*ampm,
+		hour,
+		curTime.GetMinute(),
+		curTime.GetSecond());
 	LastUpdateTxt->SetText(FText::FromString(formattedTime));
 }

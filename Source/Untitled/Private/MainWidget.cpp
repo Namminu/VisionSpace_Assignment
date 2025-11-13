@@ -10,6 +10,17 @@ void UMainWidget::NativeConstruct()
 	{
 		closeButton->OnClicked.AddDynamic(this, &UMainWidget::OnCloseButtonClicked);
 	}
+
+	// Widgets 생성 및 추가
+	if(AIChatWidget && AIChatBorder)
+	{
+		UUserWidget* AIChatWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), AIChatWidget);
+		if(AIChatWidgetInstance)
+		{
+			AIChatBorder->SetContent(AIChatWidgetInstance);
+		}
+	}
+	
 }
 
 void UMainWidget::OnCloseButtonClicked()

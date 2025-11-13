@@ -24,7 +24,7 @@ public:
 	virtual void NativeConstruct() override;
 
 private:
-	/* 로딩 위젯 클래스 */
+	/* Loading Animation Widget Class */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
 	TSubclassOf<UUserWidget> loadingWidget;
 
