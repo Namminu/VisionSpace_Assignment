@@ -8,6 +8,7 @@
 #include "Components/ProgressBar.h"
 #include "Components/Button.h"
 #include "Components/EditableTextBox.h"
+#include "Components/Border.h"
 #include "AIChatWidget.generated.h"
 
 /**
@@ -23,6 +24,16 @@ public:
 	virtual void NativeConstruct() override;
 
 private:
+	/* 로딩 위젯 클래스 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
+	TSubclassOf<UUserWidget> loadingWidget;
+
+	UPROPERTY()
+	UUserWidget* loadingWidgetInstance;
+
+	UPROPERTY(meta = (BindWidget))
+	UBorder* loadingBorder;
+
 #pragma region --- Weights ---
 	/* Weight - Budget */
 	UPROPERTY(meta = (BindWidget))

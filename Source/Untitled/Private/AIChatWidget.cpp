@@ -13,8 +13,6 @@ void UAIChatWidget::NativeConstruct()
 		GenerateBtn->OnClicked.AddDynamic(this, &UAIChatWidget::OnGenerateBtnClicked);
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("AIChat Widget Native Called"));
-
 	// Set Dummy Data
 	float budgetPercent = 0.34f;
 	float throughputPercent = 0.64f;
@@ -36,7 +34,23 @@ void UAIChatWidget::OnGenerateBtnClicked()
 	InputTextBox->SetText(FText::GetEmpty());
 
 	// 2. 로딩 애니메이션 시작
-	// StartAnmation();
+	if (!loadingWidgetInstance)
+	{
+		if (!loadingWidget)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Loading Widget Null ERROR"));
+			return;
+		}
+		loadingWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), loadingWidget);
+		if (loadingWidgetInstance)
+		{
+			if (loadingBorder)
+			{
+				loadingBorder->SetContent(loadingWidgetInstance);
+			}
+			else loadingWidgetInstance->AddToViewport();
+		}
+	}
 
 	// 3. 로딩 완료 메서드 설정
 	UWorld* world = GetWorld();
@@ -55,7 +69,15 @@ void UAIChatWidget::OnGenerateBtnClicked()
 void UAIChatWidget::OnGenerateTaskCompleted()
 {
 	// 1. 로딩 애니메이션 종료
-	// StopAnimation();
+	if (loadingWidgetInstance)
+	{
+		if (loadingBorder->GetContent() == loadingWidgetInstance)
+		{
+			loadingBorder->SetContent(nullptr);
+		}
+		else loadingWidgetInstance->RemoveFromParent();
+		loadingWidgetInstance = nullptr;
+	}
 
 	// 2. OutputText 내용 설정
 	FText dummyResult = FText::FromString(TEXT("dummy Result ~"));
