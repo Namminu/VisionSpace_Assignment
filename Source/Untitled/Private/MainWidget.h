@@ -27,13 +27,34 @@ public:
 
 protected:
 #pragma region --- SubWidgets ---
+	// Comparision Widget
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
+	TSubclassOf<UUserWidget> CharacteristicWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UBorder* CharacteristicBorder;
+
+	// Comparision Widget
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
+	TSubclassOf<UUserWidget> AnalysisWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UBorder* AnalysisBorder;
+
+	// Comparision Widget
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
+	TSubclassOf<UUserWidget> ComparisionWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UBorder* ComparisionBorder;
+
+	// AIChat Widget
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
 	TSubclassOf<UUserWidget> AIChatWidget;
 
 	UPROPERTY(meta = (BindWidget))
 	UBorder* AIChatBorder;
 #pragma endregion
-
 
 	/* À§Á¬Ã¢ ´Ý±â ¹öÆ° */
 	UPROPERTY(meta = (BindWidget))

@@ -21,6 +21,32 @@ void UMainWidget::NativeConstruct()
 		}
 	}
 	
+	if (ComparisionWidget && ComparisionBorder)
+	{
+		UUserWidget* ComparisionWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), ComparisionWidget);
+		if (ComparisionWidgetInstance)
+		{
+			ComparisionBorder->SetContent(ComparisionWidgetInstance);
+		}
+	}
+
+	if (AnalysisWidget && AnalysisBorder)
+	{
+		UUserWidget* AnalysisWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), AnalysisWidget);
+		if (AnalysisWidgetInstance)
+		{
+			AnalysisBorder->SetContent(AnalysisWidgetInstance);
+		}
+	}
+
+	if (CharacteristicWidget && CharacteristicBorder)
+	{
+		UUserWidget* CharacteristicWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), CharacteristicWidget);
+		if (CharacteristicWidgetInstance)
+		{
+			CharacteristicBorder->SetContent(CharacteristicWidgetInstance);
+		}
+	}
 }
 
 void UMainWidget::OnCloseButtonClicked()
