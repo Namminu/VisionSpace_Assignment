@@ -28,7 +28,6 @@ void UComparisionWidget::SetAllProgressData(const TArray<FPerformanceData>& Data
         return;
     }
 
-    // 데이터 배열을 순회하며 위젯 생성 및 설정
     for (const FPerformanceData& Data : DataArray)
     {
         UPerformanceWidget* ItemWidget = CreateWidget<UPerformanceWidget>(this, performanceWidget);

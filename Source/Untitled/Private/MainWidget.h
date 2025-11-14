@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
-#include "Components/Border.h"
+#include "Components/WidgetSwitcher.h"
 #include "MainWidget.generated.h"
 
 /**
@@ -25,43 +25,66 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnMainWidgetClosed OnClosed;
 
-protected:
-#pragma region --- SubWidgets ---
-	// Comparision Widget
+private:
+#pragma region --- Page Widgets
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
-	TSubclassOf<UUserWidget> CharacteristicWidget;
+	TSubclassOf<UUserWidget> SynthesisWidget;
 
-	UPROPERTY(meta = (BindWidget))
-	UBorder* CharacteristicBorder;
-
-	// Comparision Widget
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
-	TSubclassOf<UUserWidget> AnalysisWidget;
+	TSubclassOf<UUserWidget> ThroughputWidget;
 
-	UPROPERTY(meta = (BindWidget))
-	UBorder* AnalysisBorder;
-
-	// Comparision Widget
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
-	TSubclassOf<UUserWidget> ComparisionWidget;
+	TSubclassOf<UUserWidget> OEEWidget;
 
-	UPROPERTY(meta = (BindWidget))
-	UBorder* ComparisionBorder;
-
-	// AIChat Widget
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widgets", meta = (AllowPrivateAccess))
-	TSubclassOf<UUserWidget> AIChatWidget;
+	TSubclassOf<UUserWidget> ROIWidget;
 
-	UPROPERTY(meta = (BindWidget))
-	UBorder* AIChatBorder;
+	TArray<UUserWidget*> PageInstances;
 #pragma endregion
+#pragma region --- Buttons ---
+	TArray<UButton*> AllButtons;
 
-	/* 위젯창 닫기 버튼 */
+	UPROPERTY(meta = (BindWidget))
+	UButton* SynthesisBtn;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* ThroughputBTN;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* OEEBtn;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* ROIBtn;
+
 	UPROPERTY(meta = (BindWidget))
 	UButton* closeButton;
+#pragma endregion
 
+#pragma region --- Button Methods ---
+	UFUNCTION(BlueprintCallable)
+	void OnSynthesisButtonClicked();
 
-	/* 닫기 버튼 클릭 이벤트 */
+	UFUNCTION(BlueprintCallable)
+	void OnThroughputButtonClicked();
+
+	UFUNCTION(BlueprintCallable)
+	void OnOEEButtonClicked();
+
+	UFUNCTION(BlueprintCallable)
+	void OnROIButtonClicked();
+
 	UFUNCTION()
 	void OnCloseButtonClicked();
+
+	void UpdateButtonStyle(int ActiveIndex);
+#pragma endregion
+
+	UPROPERTY(meta = (BindWidget))
+	UWidgetSwitcher* PageSwitcher;
+
+	UPROPERTY(EditAnywhere, Category = "Button Color", meta = (BindWidget))
+	FLinearColor SelectedButtonColor;
+
+	UPROPERTY(EditAnywhere, Category = "Button Color", meta = (BindWidget))
+	FLinearColor DefaultButtonColor;
 };

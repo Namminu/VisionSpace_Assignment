@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "CharacteristicWidget.h"
@@ -10,15 +10,26 @@ void UCharacteristicWidget::NativeConstruct()
 	Super::NativeConstruct();
     dummyData =
     {
-        FIndicatorData{ FText::FromString("Ã¢°í Ã³¸®·®"), FText::FromString(""), FText::FromString("24h ¹°·ù Ã³¸®·® 17¸¸ -> 42¸¸"), 0.75f, FText::FromString("Çâ»ó") },
-        FIndicatorData{ FText::FromString("Order Picking Accuracy"), FText::FromString(""), FText::FromString("ÇÇÅ· ½Ã°£"), 0.75f, FText::FromString("´ÜÃà") },
-        FIndicatorData{ FText::FromString("Lead Time"), FText::FromString(""), FText::FromString("¸®µåÅ¸ÀÓ 48H -> 24H"), 1.05f, FText::FromString("´ÜÃà") },
-        FIndicatorData{ FText::FromString("Space Utilization Efficiency"), FText::FromString("°í¹Ðµµ ÀúÀå Ã¢°í ¸éÀû"), FText::FromString("Ã¢°í È°¿ë È¿À²¼º"), 0.25f, FText::FromString("Çâ»ó") },
-        FIndicatorData{ FText::FromString("Ã³¸® ¿ë·®"), FText::FromString(""), FText::FromString("Ã³¸® ¿ë·®"), 3.00f, FText::FromString("Áõ°¡") },
-        FIndicatorData{ FText::FromString("Loabor costs"), FText::FromString("ÀÚÀ² Ã¢°í ·Îº¿À¸·Î 24½Ã°£ ¹«ÀÎ ¿î¿µ"), FText::FromString("10¾ï ´Þ·¯ ÀÌ»ó ÀÎ°Çºñ"), 0.15f, FText::FromString("°£¼ÒÈ­") },
-        FIndicatorData{ FText::FromString("ROI ÃßÁ¤"), FText::FromString("¿¹Ãø"), FText::FromString("ÃÊ±â 2³â ³»"), 2.75f, FText::FromString("´Þ¼º") },
-        FIndicatorData{ FText::FromString("Àç°í ºñ¿ë"), FText::FromString("¿¹Ãø"), FText::FromString("Àç°í ÃÖÀûÈ­"), 0.15f, FText::FromString("Àý°¨") },
-        FIndicatorData{ FText::FromString("ÃÖÀû °æ·Î"), FText::FromString("¿¹Ãø"), FText::FromString("¿¬·áºñ Àý°¨, ½Ã°£"), 0.55f, FText::FromString("´ÜÃà") }
+        /* í•œê¸€ í°íŠ¸ ì¶œë ¥ ì‹œ ê¹¨ì§í˜„ìƒ ë¬¸ì œ : í•´ê²° ë³´ë¥˜ */
+        //FIndicatorData(FText::FromString("ì°½ê³  ì²˜ë¦¬ëŸ‰"), FText::FromString(""), FText::FromString("24h ë¬¼ë¥˜ ì²˜ë¦¬ëŸ‰ 17ë§Œ -> 42ë§Œ"), 0.75f, FText::FromString("í–¥ìƒ")),
+        //FIndicatorData(FText::FromString("Order Picking Accuracy"), FText::FromString(""), FText::FromString("í”¼í‚¹ ì‹œê°„"), 0.75f, FText::FromString("ë‹¨ì¶•")),
+        //FIndicatorData(FText::FromString("Lead Time"), FText::FromString(""), FText::FromString("ë¦¬ë“œíƒ€ìž„ 48H -> 24H"), 1.05f, FText::FromString("ë‹¨ì¶•")),
+        //FIndicatorData(FText::FromString("Space Utilization Efficiency"), FText::FromString("ê³ ë°€ë„ ì €ìž¥ ì°½ê³  ë©´ì "), FText::FromString("ì°½ê³  í™œìš© íš¨ìœ¨ì„±"), 0.25f, FText::FromString("í–¥ìƒ")),
+        //FIndicatorData(FText::FromString("ì²˜ë¦¬ ìš©ëŸ‰"), FText::FromString(""), FText::FromString("ì²˜ë¦¬ ìš©ëŸ‰"), 3.00f, FText::FromString("ì¦ê°€")),
+        //FIndicatorData(FText::FromString("Loabor costs"), FText::FromString("ìžìœ¨ ì°½ê³  ë¡œë´‡ìœ¼ë¡œ 24ì‹œê°„ ë¬´ì¸ ìš´ì˜"), FText::FromString("10ì–µ ë‹¬ëŸ¬ ì´ìƒ ì¸ê±´ë¹„"), 0.15f, FText::FromString("ê°„ì†Œí™”")),
+        //FIndicatorData(FText::FromString("ROI ì¶”ì •"), FText::FromString("ì˜ˆì¸¡"), FText::FromString("ì´ˆê¸° 2ë…„ ë‚´"), 2.75f, FText::FromString("ë‹¬ì„±")),
+        //FIndicatorData(FText::FromString("ìž¬ê³  ë¹„ìš©"), FText::FromString("ì˜ˆì¸¡"), FText::FromString("ìž¬ê³  ìµœì í™”"), 0.15f, FText::FromString("ì ˆê°")),
+        //FIndicatorData(FText::FromString("ìµœì  ê²½ë¡œ"), FText::FromString("ì˜ˆì¸¡"), FText::FromString("ì—°ë£Œë¹„ ì ˆê°, ì‹œê°„"), 0.55f, FText::FromString("ë‹¨ì¶•"))
+
+        FIndicatorData(FText::FromString("Warehouse Throughput"), FText::FromString(""), FText::FromString("Logistics throughput 170k -> 420k"), 0.75f, FText::FromString("Improved")),
+        FIndicatorData(FText::FromString("Order Picking Accuracy"), FText::FromString(""), FText::FromString("Picking Time"), 0.75f, FText::FromString("Reduced")),
+        FIndicatorData(FText::FromString("Lead Time"), FText::FromString(""), FText::FromString("Lead Time 48H -> 24H"), 1.05f, FText::FromString("Reduced")),
+        FIndicatorData(FText::FromString("Space Utilization Efficiency"), FText::FromString("High Density Storage"), FText::FromString("Warehouse Utilization"), 0.25f, FText::FromString("Improved")),
+        FIndicatorData(FText::FromString("Processing Capacity"), FText::FromString(""), FText::FromString("Processing Capacity"), 3.00f, FText::FromString("Increased")),
+        FIndicatorData(FText::FromString("Labor Costs"), FText::FromString("24h unmanned operation"), FText::FromString("$1B+ Labor Cost"), 0.15f, FText::FromString("Optimized")),
+        FIndicatorData(FText::FromString("Estimated ROI"), FText::FromString("Forecast"), FText::FromString("Within the first 2 years"), 2.75f, FText::FromString("Achieved")),
+        FIndicatorData(FText::FromString("Inventory Costs"), FText::FromString("Forecast"), FText::FromString("Inventory Optimization"), 0.15f, FText::FromString("Reduced")),
+        FIndicatorData(FText::FromString("Optimal Route"), FText::FromString("Forecast"), FText::FromString("Fuel Costs, Time"), 0.55f, FText::FromString("Reduced"))
     };
 
 	SetAllIndicatorData(dummyData);
@@ -31,22 +42,38 @@ void UCharacteristicWidget::SetAllIndicatorData(const TArray<FIndicatorData>& Da
         UE_LOG(LogTemp, Warning, TEXT("VerticalItems or PerformanceWidget NULL ERROR"));
         return;
     }
+    IndiGridPanel->ClearChildren();
 
-    // µ¥ÀÌÅÍ ¹è¿­À» ¼øÈ¸ÇÏ¸ç À§Á¬ »ý¼º ¹× ¼³Á¤
-    for (const FIndicatorData& Data : DataArray)
+    for (int i = 0; i < DataArray.Num(); i++)
     {
-        UIndicatorWidget* indiWidget = CreateWidget<UIndicatorWidget>(this, indicatorWidget);
+		const int row = i / 3;
+		const int col = i % 3;
 
+        UIndicatorWidget* indiWidget = CreateWidget<UIndicatorWidget>(this, indicatorWidget);
         if (indiWidget)
         {
-            indiWidget->SetData(Data);
-            UGridSlot* slot = Cast<UGridSlot>(IndiGridPanel->AddChild(indiWidget));
+            indiWidget->SetData(DataArray[i]);
+            indiWidget->OnIndicatorHoverd.BindUObject(this, &UCharacteristicWidget::OnIndicatorCardHovered);
+            UGridSlot* slot = Cast<UGridSlot>(IndiGridPanel->AddChildToGrid(indiWidget, row, col));
             if (slot)
             {
+                slot->SetRow(row);
+				slot->SetColumn(col);
+
                 slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
                 slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
                 slot->SetPadding(FMargin(2.f));
-            }
+			}
         }
     }
+}
+
+void UCharacteristicWidget::OnIndicatorCardHovered(UIndicatorWidget* hoveredIndicator)
+{
+    if (currentHoveredIndicator && currentHoveredIndicator != hoveredIndicator)
+    {
+        currentHoveredIndicator->ResetBorderColor();
+    }
+
+    currentHoveredIndicator = hoveredIndicator;
 }

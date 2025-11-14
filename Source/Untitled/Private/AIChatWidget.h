@@ -7,8 +7,9 @@
 #include "Components/TextBlock.h"
 #include "Components/ProgressBar.h"
 #include "Components/Button.h"
-#include "Components/EditableTextBox.h"
+#include "Components/MultiLineEditableTextBox.h"
 #include "Components/Border.h"
+#include "Components/RichTextBlock.h"
 #include "AIChatWidget.generated.h"
 
 /**
@@ -59,10 +60,10 @@ private:
 
 #pragma region --- Text box ---
 	UPROPERTY(meta = (BindWidget))
-	UEditableTextBox* InputTextBox;
+	UMultiLineEditableTextBox* InputTextBox;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* OutputText;
+	URichTextBlock* OutputText;
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* LastUpdateTxt;

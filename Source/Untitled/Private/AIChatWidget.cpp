@@ -30,10 +30,8 @@ void UAIChatWidget::NativeConstruct()
 
 void UAIChatWidget::OnGenerateBtnClicked()
 {
-	// 1. InputTextBox ³»¿ë Áö¿ì±â
 	InputTextBox->SetText(FText::GetEmpty());
 
-	// 2. ·Îµù ¾Ö´Ï¸ÞÀÌ¼Ç ½ÃÀÛ
 	if (!loadingWidgetInstance)
 	{
 		if (!loadingWidget)
@@ -51,7 +49,6 @@ void UAIChatWidget::OnGenerateBtnClicked()
 		}
 	}
 
-	// 3. ·Îµù ¿Ï·á ¸Þ¼­µå ¼³Á¤
 	UWorld* world = GetWorld();
 	if (world)
 	{
@@ -59,7 +56,7 @@ void UAIChatWidget::OnGenerateBtnClicked()
 			TimerHandle_GenerateTask,
 			this,
 			&UAIChatWidget::OnGenerateTaskCompleted,
-			2.0f, // ´ë±â ½Ã°£ ÀÓÀÇ 3ÃÊ ¼³Á¤
+			2.0f,
 			false
 		);
 	}
@@ -67,7 +64,6 @@ void UAIChatWidget::OnGenerateBtnClicked()
 
 void UAIChatWidget::OnGenerateTaskCompleted()
 {
-	// 1. ·Îµù ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·á
 	if (loadingWidgetInstance)
 	{
 		if (loadingBorder->GetContent() == loadingWidgetInstance)
@@ -78,16 +74,20 @@ void UAIChatWidget::OnGenerateTaskCompleted()
 		loadingWidgetInstance = nullptr;
 	}
 
-	// 2. OutputText ³»¿ë ¼³Á¤
-	FText dummyResult = FText::FromString(TEXT(
-	"KPI +15% | ROI +10% | EFF 85% | MOP ¡é 1.2s\n"
-    "¡ã Performance Alert: Current operation shows 35% efficiency gap\n"
-    "High labor dependency (20 workers)\n"
-    "Consider automation for 62% cost reduction potential\n"
-	"Manual processes limiting scalability"));
-	OutputText->SetText(dummyResult);
+	FText dummyRichOutputData = FText::FromString(TEXT(
+		"<SmallPercent>KPI +15% | ROI +10% | EFF 85% | MOP â†“ 1.2s</>\n"
+		"<SmallOrange>â–² Performance Alert:</><SmallPercent>Current operation shows 35% efficiency gap</>\n"
+		"<SmallRed>High labor dependency (20 workers)</>\n"
+		"<SmallGreen>Consider automation for 62% cost reduction potential</>\n"
+		"<SmallPurple>Manual processes limiting scalability</>\n"
+		"<SmallPercent>Throughput +75% | Accuracy 99.9% | Downtime 0.5%</>\n"
+		"<SmallOrange>Configuration Warning:</><SmallPurple> Current WMS is not compatible with AMR fleet</>\n"
+		"<SmallGreen>Integrate WMS via API to support real-time robot orchestration</>\n"
+		"<SmallGray>Inventory Accuracy:</><SmallPercent>99.9%</><SmallGray>(Goal: 100%) - Minor</><SmallRed> error </><SmallGray>margin</>\n"
+		"<SmallGreen>Deploy 5 AGVs for long-distance transport to minimize human walking distance</>"
+	));
+	OutputText->SetText(dummyRichOutputData);
 
-	// 3. LastUpdateTxt °»½Å
 	FDateTime curTime = FDateTime::Now();
 	int32 hour = curTime.GetHour() % 12;
 	if (hour == 0) hour = 12;

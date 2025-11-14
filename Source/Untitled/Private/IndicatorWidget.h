@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "AllStructs.h"
 #include "Components/TextBlock.h"
+#include "Components/Border.h"
+#include "Components/RichTextBlock.h"
 #include "IndicatorWidget.generated.h"
 
 /**
@@ -17,12 +19,16 @@ class UIndicatorWidget : public UUserWidget
 	GENERATED_BODY()
 	
 public:
+	void ResetBorderColor();
+
+	DECLARE_DELEGATE_OneParam(FOnIndicatorHoverd, UIndicatorWidget*)
+	FOnIndicatorHoverd OnIndicatorHoverd;
+
 	UFUNCTION()
 	void SetData(const FIndicatorData& data);
 
 private:
-	void SetTextGradation();
-
+#pragma region --- Widget Properties ---
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* TitleTxt;
 
@@ -33,11 +39,20 @@ private:
 	UTextBlock* DescriptionTxt;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* PercentTxt;
+	URichTextBlock* ShowPercent;
+#pragma endregion
+
+#pragma region --- Mouse Hover ---
+	virtual void NativeOnMouseEnter(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
+	virtual void NativeOnMouseLeave(const FPointerEvent& InMouseEvent) override;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* PercentMark;
+	UBorder* CardBorder;
 
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* StatusTxt;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Border Color", meta = (AllowPrivateAccess))
+	FLinearColor OriginalBorderColor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Border Color", meta = (AllowPrivateAccess))
+	FLinearColor ChangeBorderColor;
+#pragma endregion
 };

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -30,4 +30,12 @@ private:
 
 	UPROPERTY()
 	TArray<FIndicatorData> dummyData;
+
+#pragma region --- Mouse Hover Event ---
+	UPROPERTY()
+	UIndicatorWidget* currentHoveredIndicator = nullptr;
+
+	UFUNCTION()
+	void OnIndicatorCardHovered(UIndicatorWidget* hoveredIndicator);
+#pragma endregion
 };
