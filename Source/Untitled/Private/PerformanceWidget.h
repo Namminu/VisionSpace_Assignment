@@ -23,17 +23,17 @@ public:
 
 private:
     UPROPERTY(meta = (BindWidget))
-    class UTextBlock* ItemNameTxt;
+    UTextBlock* ItemNameTxt;
 
     UPROPERTY(meta = (BindWidget))
-    class UProgressBar* TL_Bar;
+    UProgressBar* TL_Bar;
 
     UPROPERTY(meta = (BindWidget))
-    class UTextBlock* TL_ValueTxt;
+    UTextBlock* TL_ValueTxt;
 
     UPROPERTY(meta = (BindWidget))
-    class UProgressBar* AI_Bar;
+    UProgressBar* AI_Bar;
 
     UPROPERTY(meta = (BindWidget))
-    class UTextBlock* AI_ValueTxt;
+    UTextBlock* AI_ValueTxt;
 };
